@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日语学习宝藏级网站推荐 / Japanese Learning Treasures</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* --- 设计基因：字体系统 --- */
+        body {
+            font-family: 'Poppins', 'Noto Serif SC', sans-serif;
+            font-weight: 300;
+            color: #e5e7eb; /* text-gray-200 */
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 700;
+        }
+
+        /* --- 核心风格：高级玻璃拟态与辉光渐变背景 --- */
+        body {
+            /* 背景抽象引导线，象征“学习脉络” */
+            background-image: url("data:image/svg+xml,%3Csvg width='1200' height='1600' viewBox='0 0 1200 1600' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-400 1600L1600 -400' stroke='rgba(14, 165, 233, 0.08)' stroke-width='2'/%3E%3Cpath d='M-200 1800L1800 -200' stroke='rgba(14, 165, 233, 0.08)' stroke-width='1'/%3E%3Cpath d='M1400 1800L-600 -200' stroke='rgba(14, 165, 233, 0.08)' stroke-width='1'/%3E%3C/svg%3E");
+            background-color: #030712; /* gray-950 */
+            /* 辉光渐变 (Aura Gradients)，营造“知识海洋”氛围 */
+            position: relative;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: -20%;
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, rgba(14, 165, 233, 0) 60%);
+            filter: blur(100px);
+            z-index: -1;
+        }
+        body::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            right: -30%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0) 55%);
+            filter: blur(100px);
+            z-index: -1;
+        }
+        
+        /* 内容容器：玻璃卡片统一样式 */
+        .glass-card {
+            background: rgba(31, 41, 55, 0.5); /* bg-gray-800 with 50% opacity */
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px); /* Safari support */
+            border-radius: 0.5rem; /* rounded-lg */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* 1px 高光边框 */
+            box-shadow: 
+                0 8px 32px 0 rgba(0, 0, 0, 0.37), /* 柔和 box-shadow */
+                inset 0 1px 1px 0 rgba(255, 255, 255, 0.05); /* 微弱 inset 阴影 */
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .glass-card:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 
+                0 16px 40px 0 rgba(0, 0, 0, 0.45),
+                inset 0 1px 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        /* 侧边栏：巨大、描边、空心数字 */
+        .hollow-text {
+            color: transparent;
+            -webkit-text-stroke: 1.5px rgba(14, 165, 233, 0.6); /* sky-500 */
+            text-stroke: 1.5px rgba(14, 165, 233, 0.6);
+            transition: color 0.3s, -webkit-text-stroke-color 0.3s;
+        }
+        .group:hover .hollow-text {
+            color: rgba(14, 165, 233, 0.1);
+            -webkit-text-stroke-color: rgba(56, 189, 248, 0.8); /* sky-400 */
+        }
+
+        /* 滚动条美化 (可选) */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1f2937; /* bg-gray-800 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #374151; /* bg-gray-700 */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4b5563; /* bg-gray-600 */
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-gray-950 px-4 sm:px-6 lg:px-8 py-12">
+
+    <div class="max-w-screen-xl mx-auto">
+
+        <header class="text-center mb-16 md:mb-24">
+            <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-100">
+                日语学习宝藏级网站推荐
+            </h1>
+            <h2 class="text-xl md:text-2xl font-light text-sky-400 mt-2 tracking-wider">
+                Japanese Learning Treasures
+            </h2>
+            <p class="mt-4 text-base md:text-lg text-gray-400">听说读写全场景覆盖，系统提升日语能力。</p>
+        </header>
+
+        <main class="space-y-12 md:space-y-16">
+            
+            <script>
+                const sites = [
+                    { category: '综合 / General', name: 'NHK', description: '日本放送协会官方网站，集知识性与娱乐性于一体的日语网站。', url: 'http://www.nhk.or.jp/' },
+                    { category: '听力 / Listening', name: 'TBS 新闻', description: '大量带日文字幕的短视频，提升听力并了解日本文化。', url: 'http://news.tbs.co.jp/' },
+                    { category: '检索 / Search', name: '雅虎日本', description: '日本最大搜索引擎，功能强大，信息检索首选。', url: 'https://www.yahoo.co.jp/' },
+                    { category: '词典 / Dictionary', name: '読み方は?', description: '查询各种日语词汇读法，单词学习必备。', url: 'https://yomikatawa.com/' },
+                    { category: '词源 / Etymology', name: '日语语源词典', description: '探索日语词源由来，覆盖惯用语、节庆用语等。', url: 'http://gogen-allguide.com/' },
+                    { category: '语法 / Grammar', name: '日本語の例文', description: 'N5〜N4 级别语法例句与阅读练习，强化语法与读解。', url: 'https://j-nihongo.com/' },
+                    { category: '写作 / Writing', name: '写作指导网', description: '输入词汇查短语搭配与例句，积累作文素材。', url: 'https://hinoki-project.org/natsume/' },
+                    { category: '辨析 / Nuance', name: '二つの違い事典', description: '对比常用单词差异，深化词义理解。', url: 'http://chigai.lance3.net/' },
+                    { category: '趣味 / Fun Learning', name: '絵でわかる日本語', description: '插图和漫画形式讲解语法知识点，生动易记。', url: 'https://www.edewakaru.com/' },
+                ];
+            </script>
+
+            <div id="sites-container" class="space-y-10">
+                </div>
+
+            <script>
+                const container = document.getElementById('sites-container');
+                sites.forEach((site, index) => {
+                    const itemHtml = `
+                        <div class="group grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-center">
+                            <div class="md:col-span-4 flex items-center gap-4 md:gap-6 justify-center md:justify-end pr-4">
+                                <div class="text-right">
+                                    <h4 class="font-sans font-semibold text-sky-400 text-sm tracking-widest uppercase transition-colors duration-300 group-hover:text-sky-300">${site.category}</h4>
+                                </div>
+                                <div class="hollow-text text-7xl lg:text-8xl font-black select-none">
+                                    ${String(index + 1).padStart(2, '0')}
+                                </div>
+                            </div>
+                            <div class="md:col-span-8 w-full">
+                                <div class="glass-card p-6 h-full flex flex-col justify-between">
+                                    <div>
+                                        <h3 class="text-2xl text-gray-50 mb-2">${site.name}</h3>
+                                        <p class="text-gray-300 font-light leading-relaxed">${site.description}</p>
+                                    </div>
+                                    <a href="${site.url}" target="_blank" rel="noopener noreferrer" 
+                                       class="inline-flex items-center gap-2 text-sky-400 font-semibold mt-4 group-hover:text-sky-300 transition-colors duration-300">
+                                        访问网站
+                                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    container.innerHTML += itemHtml;
+                });
+            </script>
+
+        </main>
+
+        <section class="mt-20 md:mt-32">
+            <div class="glass-card p-8 text-center">
+                <h3 class="text-2xl md:text-3xl text-gray-100">Why These Sites?</h3>
+                <p class="mt-4 max-w-3xl mx-auto text-gray-300 leading-7">
+                    我们精心挑选的这 9 个网站，构成了一条从“输入”到“输出”的完整学习路径。从 <span class="text-sky-400">新闻阅读</span> 与 <span class="text-sky-400">视频听力</span> 的海量输入开始，途径 <span class="text-sky-400">词典查询</span> 与 <span class="text-sky-400">语法辨析</span> 的深度钻研，最终导向 <span class="text-sky-400">写作练习</span> 的有效输出。这套组合拳旨在覆盖听说读写全场景，助您构建扎实、全面的日语能力体系。
+                </p>
+            </div>
+        </section>
+
+        <footer class="mt-20 md:mt-32 py-8 text-center text-gray-500 bg-[#1f2937]/50 rounded-lg">
+            <p class="font-sans text-sm">由 Gemini 根据设计蓝图生成</p>
+            <p class="font-sans text-xs mt-2">
+                页面更新于 <time datetime="2025-08-08">2025年8月8日</time> · © 版权所有
+            </p>
+             </footer>
+
+    </div>
+</body>
+</html>
