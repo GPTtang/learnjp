@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini | 您的创意与智能伙伴</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;700&family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        /* --- 字体系统 --- */
+        body {
+            font-family: 'Noto Sans SC', 'Exo 2', sans-serif;
+            font-weight: 300;
+        }
+        h1, h2, h3, .font-display {
+            font-family: 'Exo 2', 'Noto Sans SC', sans-serif;
+            font-weight: 700;
+        }
+
+        /* --- 动态星云背景 --- */
+        #main-wrapper {
+            background-color: #000212;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        #main-wrapper::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            z-index: -1;
+            background: radial-gradient(circle, rgba(29, 78, 216, 0.15) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 10%, rgba(20, 184, 166, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 10% 90%, rgba(124, 58, 237, 0.15) 0%, transparent 50%);
+            animation: move-nebula 30s linear infinite;
+        }
+
+        @keyframes move-nebula {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* --- 玻璃拟态卡片 --- */
+        .glass-card {
+            background: rgba(17, 24, 39, 0.5); /* bg-gray-900 with opacity */
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+        .glass-card:hover {
+            transform: translateY(-8px);
+            background: rgba(31, 41, 55, 0.6);
+            border-color: rgba(56, 189, 248, 0.5);
+        }
+
+        /* --- 渐变发光按钮 --- */
+        .glow-button {
+            position: relative;
+            background: linear-gradient(90deg, #0ea5e9, #22d3ee);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        .glow-button:hover {
+            box-shadow: 0 0 20px rgba(20, 184, 166, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* --- 页面进入动画 --- */
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .fade-in-up {
+            animation: fade-in-up 0.8s ease-out forwards;
+        }
+        .fade-in-up-delay-1 { animation-delay: 0.2s; opacity: 0; }
+        .fade-in-up-delay-2 { animation-delay: 0.4s; opacity: 0; }
+        .fade-in-up-delay-3 { animation-delay: 0.6s; opacity: 0; }
+        
+    </style>
+</head>
+
+<body class="bg-[#000212] text-gray-200">
+
+    <div id="main-wrapper">
+        
+        <header class="absolute top-0 left-0 right-0 z-10 p-6">
+            <nav class="container mx-auto flex justify-between items-center">
+                <div class="font-display text-2xl font-bold">
+                    <span class="text-white">G</span><span class="text-cyan-400">e</span><span class="text-white">mini</span>
+                </div>
+                <a href="#cta" class="hidden md:inline-block border border-cyan-400 text-cyan-400 font-bold py-2 px-5 rounded-full hover:bg-cyan-400 hover:text-black transition-all duration-300">
+                    立即开始
+                </a>
+            </nav>
+        </header>
+
+        <main>
+            <section id="hero" class="min-h-screen flex items-center justify-center text-center px-4">
+                <div class="flex flex-col items-center">
+                    <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-cyan-300 fade-in-up">
+                        你好，我是 Gemini
+                    </h1>
+                    <p class="mt-6 max-w-2xl text-lg md:text-xl text-gray-300 leading-relaxed fade-in-up fade-in-up-delay-1">
+                        一个强大、富有创造力的人工智能。
+                        <br class="hidden md:block">
+                        我可以帮助您探索未知，激发灵感，构建未来。
+                    </p>
+                    <a href="#features" class="glow-button mt-10 font-bold text-black py-4 px-10 rounded-full text-lg fade-in-up fade-in-up-delay-2">
+                        了解更多
+                    </a>
+                </div>
+                
+                <div class="absolute bottom-10 left-1/2 -translate-x-1/2 fade-in-up fade-in-up-delay-3">
+                    <a href="#features" class="text-gray-500 animate-bounce">
+                        <i class="fa-solid fa-chevron-down text-2xl"></i>
+                    </a>
+                </div>
+            </section>
+
+            <section id="features" class="py-20 md:py-32 px-4">
+                <div class="container mx-auto text-center">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">我能为您做什么？</h2>
+                    <p class="text-lg text-gray-400 mb-16">从日常问答到复杂的专业任务，我都能提供支持。</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="glass-card rounded-xl p-8 text-left">
+                            <i class="fa-solid fa-brain text-4xl text-cyan-400 mb-6"></i>
+                            <h3 class="text-2xl font-bold mb-3">知识问答与分析</h3>
+                            <p class="text-gray-400 leading-relaxed">
+                                上至天文地理，下至生活百科，我能快速整合信息，提供准确、深入的解答与分析报告。
+                            </p>
+                        </div>
+                        
+                        <div class="glass-card rounded-xl p-8 text-left">
+                            <i class="fa-solid fa-code text-4xl text-cyan-400 mb-6"></i>
+                            <h3 class="text-2xl font-bold mb-3">编程与代码生成</h3>
+                            <p class="text-gray-400 leading-relaxed">
+                                支持多种编程语言，可以帮助您编写代码、调试错误、优化算法，甚至构建完整的应用原型。
+                            </p>
+                        </div>
+
+                        <div class="glass-card rounded-xl p-8 text-left">
+                            <i class="fa-solid fa-lightbulb text-4xl text-cyan-400 mb-6"></i>
+                            <h3 class="text-2xl font-bold mb-3">创意与内容创作</h3>
+                            <p class="text-gray-400 leading-relaxed">
+                                无论是营销文案、剧本大纲，还是诗歌小说，我都能成为您的灵感伙伴，激发无限创意。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="cta" class="py-20 md:py-32 px-4">
+                <div class="container mx-auto text-center max-w-3xl">
+                    <h2 class="text-4xl md:text-5xl font-bold leading-tight">准备好开启下一个伟大的项目了吗？</h2>
+                    <p class="text-lg text-gray-400 mt-6 mb-10">
+                        无论是一个想法的萌芽，还是一个复杂问题的求解，让我们一起开始探索。
+                    </p>
+                    <a href="#" class="glow-button mt-2 font-bold text-black py-4 px-12 rounded-full text-xl">
+                        立即开始对话
+                    </a>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="border-t border-white/10 py-8">
+            <div class="container mx-auto text-center text-gray-500">
+                <p>&copy; <time datetime="2025-08-08">2025</time> Gemini. 由 Google AI 强力驱动。</p>
+                <p class="text-xs mt-2">页面生成于: 2025年8月8日</p>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>
