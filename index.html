@@ -1,193 +1,599 @@
 <!DOCTYPE html>
-<html lang="zh-CN" class="scroll-smooth">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gemini | 您的创意与智能伙伴</title>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;700&family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
+    <title>LearnJP - 专业日语学习平台</title>
     <style>
-        /* --- 字体系统 --- */
-        body {
-            font-family: 'Noto Sans SC', 'Exo 2', sans-serif;
-            font-weight: 300;
-        }
-        h1, h2, h3, .font-display {
-            font-family: 'Exo 2', 'Noto Sans SC', sans-serif;
-            font-weight: 700;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        /* --- 动态星云背景 --- */
-        #main-wrapper {
-            background-color: #000212;
+        body {
+            font-family: 'Arial', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #e74c3c, #f39c12);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #e74c3c;
+        }
+
+        /* 主页面英雄区域 */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
             overflow: hidden;
-            z-index: 1;
         }
-        #main-wrapper::before {
+
+        .hero::before {
             content: '';
             position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            z-index: -1;
-            background: radial-gradient(circle, rgba(29, 78, 216, 0.15) 0%, transparent 40%),
-                        radial-gradient(circle at 90% 10%, rgba(20, 184, 166, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 10% 90%, rgba(124, 58, 237, 0.15) 0%, transparent 50%);
-            animation: move-nebula 30s linear infinite;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            animation: float 20s ease-in-out infinite;
         }
 
-        @keyframes move-nebula {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
         }
 
-        /* --- 玻璃拟态卡片 --- */
-        .glass-card {
-            background: rgba(17, 24, 39, 0.5); /* bg-gray-900 with opacity */
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease-in-out;
-        }
-        .glass-card:hover {
-            transform: translateY(-8px);
-            background: rgba(31, 41, 55, 0.6);
-            border-color: rgba(56, 189, 248, 0.5);
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
         }
 
-        /* --- 渐变发光按钮 --- */
-        .glow-button {
-            position: relative;
-            background: linear-gradient(90deg, #0ea5e9, #22d3ee);
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-        .glow-button:hover {
-            box-shadow: 0 0 20px rgba(20, 184, 166, 0.6);
-            transform: translateY(-2px);
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            animation: fadeInUp 1s ease-out;
         }
 
-        /* --- 页面进入动画 --- */
-        @keyframes fade-in-up {
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        .fade-in-up {
-            animation: fade-in-up 0.8s ease-out forwards;
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.9s both;
         }
-        .fade-in-up-delay-1 { animation-delay: 0.2s; opacity: 0; }
-        .fade-in-up-delay-2 { animation-delay: 0.4s; opacity: 0; }
-        .fade-in-up-delay-3 { animation-delay: 0.6s; opacity: 0; }
-        
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #e74c3c, #f39c12);
+            color: white;
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(231, 76, 60, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+        }
+
+        /* 功能特色区域 */
+        .features {
+            padding: 6rem 0;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            font-weight: 300;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 4rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .feature-description {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+
+        /* JLPT等级区域 */
+        .jlpt-levels {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+        }
+
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .level-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .level-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .level-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #e74c3c, #f39c12);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .level-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .level-description {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* CTA区域 */
+        .cta-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #e74c3c, #f39c12);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .cta-description {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #e74c3c;
+        }
+
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #e74c3c;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #34495e;
+            padding-top: 2rem;
+            opacity: 0.8;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
     </style>
 </head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">LearnJP</div>
+            <ul class="nav-links">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#features">功能</a></li>
+                <li><a href="#levels">等级</a></li>
+                <li><a href="#courses">课程</a></li>
+                <li><a href="#about">关于</a></li>
+                <li><a href="#contact">联系</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<body class="bg-[#000212] text-gray-200">
+    <!-- 主页面英雄区域 -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>LearnJP</h1>
+            <p class="hero-subtitle">专为日语学习者打造的综合平台</p>
+            <p class="hero-description">
+                汇聚JLPT各级教材、智能测评与沉浸式互动课堂<br>
+                一站式助你高效通关日语能力考试，开启日语学习新纪元
+            </p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary">立即开始学习</a>
+                <a href="#" class="btn btn-secondary">免费体验</a>
+            </div>
+        </div>
+    </section>
 
-    <div id="main-wrapper">
-        
-        <header class="absolute top-0 left-0 right-0 z-10 p-6">
-            <nav class="container mx-auto flex justify-between items-center">
-                <div class="font-display text-2xl font-bold">
-                    <span class="text-white">G</span><span class="text-cyan-400">e</span><span class="text-white">mini</span>
-                </div>
-                <a href="#cta" class="hidden md:inline-block border border-cyan-400 text-cyan-400 font-bold py-2 px-5 rounded-full hover:bg-cyan-400 hover:text-black transition-all duration-300">
-                    立即开始
-                </a>
-            </nav>
-        </header>
-
-        <main>
-            <section id="hero" class="min-h-screen flex items-center justify-center text-center px-4">
-                <div class="flex flex-col items-center">
-                    <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-cyan-300 fade-in-up">
-                        你好，我是 Gemini
-                    </h1>
-                    <p class="mt-6 max-w-2xl text-lg md:text-xl text-gray-300 leading-relaxed fade-in-up fade-in-up-delay-1">
-                        一个强大、富有创造力的人工智能。
-                        <br class="hidden md:block">
-                        我可以帮助您探索未知，激发灵感，构建未来。
-                    </p>
-                    <a href="#features" class="glow-button mt-10 font-bold text-black py-4 px-10 rounded-full text-lg fade-in-up fade-in-up-delay-2">
-                        了解更多
-                    </a>
+    <!-- 功能特色 -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">核心功能特色</h2>
+            <p class="section-subtitle">全方位日语学习解决方案，让每个学习者都能找到最适合的学习路径</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3 class="feature-title">JLPT全级教材</h3>
+                    <p class="feature-description">涵盖N5-N1全级别官方教材，系统化知识体系，循序渐进提升日语水平</p>
                 </div>
                 
-                <div class="absolute bottom-10 left-1/2 -translate-x-1/2 fade-in-up fade-in-up-delay-3">
-                    <a href="#features" class="text-gray-500 animate-bounce">
-                        <i class="fa-solid fa-chevron-down text-2xl"></i>
-                    </a>
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3 class="feature-title">智能测评系统</h3>
+                    <p class="feature-description">AI驱动的个性化测评，实时分析学习进度，精准定位薄弱环节</p>
                 </div>
-            </section>
-
-            <section id="features" class="py-20 md:py-32 px-4">
-                <div class="container mx-auto text-center">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-4">我能为您做什么？</h2>
-                    <p class="text-lg text-gray-400 mb-16">从日常问答到复杂的专业任务，我都能提供支持。</p>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <div class="glass-card rounded-xl p-8 text-left">
-                            <i class="fa-solid fa-brain text-4xl text-cyan-400 mb-6"></i>
-                            <h3 class="text-2xl font-bold mb-3">知识问答与分析</h3>
-                            <p class="text-gray-400 leading-relaxed">
-                                上至天文地理，下至生活百科，我能快速整合信息，提供准确、深入的解答与分析报告。
-                            </p>
-                        </div>
-                        
-                        <div class="glass-card rounded-xl p-8 text-left">
-                            <i class="fa-solid fa-code text-4xl text-cyan-400 mb-6"></i>
-                            <h3 class="text-2xl font-bold mb-3">编程与代码生成</h3>
-                            <p class="text-gray-400 leading-relaxed">
-                                支持多种编程语言，可以帮助您编写代码、调试错误、优化算法，甚至构建完整的应用原型。
-                            </p>
-                        </div>
-
-                        <div class="glass-card rounded-xl p-8 text-left">
-                            <i class="fa-solid fa-lightbulb text-4xl text-cyan-400 mb-6"></i>
-                            <h3 class="text-2xl font-bold mb-3">创意与内容创作</h3>
-                            <p class="text-gray-400 leading-relaxed">
-                                无论是营销文案、剧本大纲，还是诗歌小说，我都能成为您的灵感伙伴，激发无限创意。
-                            </p>
-                        </div>
-                    </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">沉浸式课堂</h3>
+                    <p class="feature-description">VR/AR技术打造真实日语环境，情景化学习让语言运用更自然</p>
                 </div>
-            </section>
-
-            <section id="cta" class="py-20 md:py-32 px-4">
-                <div class="container mx-auto text-center max-w-3xl">
-                    <h2 class="text-4xl md:text-5xl font-bold leading-tight">准备好开启下一个伟大的项目了吗？</h2>
-                    <p class="text-lg text-gray-400 mt-6 mb-10">
-                        无论是一个想法的萌芽，还是一个复杂问题的求解，让我们一起开始探索。
-                    </p>
-                    <a href="#" class="glow-button mt-2 font-bold text-black py-4 px-12 rounded-full text-xl">
-                        立即开始对话
-                    </a>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">学习分析</h3>
+                    <p class="feature-description">详细的学习数据分析，可视化进度追踪，助你更好规划学习路径</p>
                 </div>
-            </section>
-
-        </main>
-
-        <footer class="border-t border-white/10 py-8">
-            <div class="container mx-auto text-center text-gray-500">
-                <p>&copy; <time datetime="2025-08-08">2025</time> Gemini. 由 Google AI 强力驱动。</p>
-                <p class="text-xs mt-2">页面生成于: 2025年8月8日</p>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3 class="feature-title">社区互动</h3>
+                    <p class="feature-description">活跃的学习社区，与全球日语学习者交流，分享经验共同进步</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3 class="feature-title">考试通关</h3>
+                    <p class="feature-description">专业的考试指导，历年真题练习，提供全面的JLPT应试策略</p>
+                </div>
             </div>
-        </footer>
+        </div>
+    </section>
 
-    </div>
+    <!-- JLPT等级介绍 -->
+    <section class="jlpt-levels" id="levels">
+        <div class="container">
+            <h2 class="section-title">JLPT能力等级</h2>
+            <p class="section-subtitle">从入门到精通，全面覆盖日语能力考试各个等级</p>
+            
+            <div class="levels-grid">
+                <div class="level-card">
+                    <div class="level-number">N5</div>
+                    <h3 class="level-title">入门级</h3>
+                    <p class="level-description">基础日语，掌握平假名片假名及基本词汇</p>
+                </div>
+                
+                <div class="level-card">
+                    <div class="level-number">N4</div>
+                    <h3 class="level-title">初级</h3>
+                    <p class="level-description">日常会话，理解基本句型和语法结构</p>
+                </div>
+                
+                <div class="level-card">
+                    <div class="level-number">N3</div>
+                    <h3 class="level-title">中级</h3>
+                    <p class="level-description">日常生活日语，具备一定的读写能力</p>
+                </div>
+                
+                <div class="level-card">
+                    <div class="level-number">N2</div>
+                    <h3 class="level-title">中高级</h3>
+                    <p class="level-description">商务日语，能够处理较复杂的语言情况</p>
+                </div>
+                
+                <div class="level-card">
+                    <div class="level-number">N1</div>
+                    <h3 class="level-title">高级</h3>
+                    <p class="level-description">精通日语，具备近似母语的语言能力</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- CTA区域 -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">开启你的日语学习之旅</h2>
+            <p class="cta-description">加入已有50万+学习者的LearnJP大家庭，让我们一起征服日语能力考试！</p>
+            <a href="#" class="btn btn-secondary">免费注册开始学习</a>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>学习资源</h3>
+                    <a href="#">JLPT教材</a>
+                    <a href="#">在线测试</a>
+                    <a href="#">语法大全</a>
+                    <a href="#">单词本</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>功能服务</h3>
+                    <a href="#">智能测评</a>
+                    <a href="#">互动课堂</a>
+                    <a href="#">学习社区</a>
+                    <a href="#">进度追踪</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>关于我们</h3>
+                    <a href="#">公司介绍</a>
+                    <a href="#">联系方式</a>
+                    <a href="#">隐私政策</a>
+                    <a href="#">服务条款</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <a href="#">客服中心</a>
+                    <a href="#">技术支持</a>
+                    <a href="#">意见反馈</a>
+                    <a href="#">合作咨询</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 LearnJP. 保留所有权利。专业日语学习平台</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 功能卡片动画观察器
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // 观察所有功能卡片
+        document.querySelectorAll('.feature-card, .level-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
 </body>
 </html>
